@@ -1,6 +1,4 @@
 # BEEP! - Passwd-Manager
-### [Click here to view](https://passwdmanager.herokuapp.com/) 👈
-
 
 ## Step 1: Installation
 
