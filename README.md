@@ -24,13 +24,3 @@ $ python3 run.py
 ```
 Go to local host @ (localhost:8000/home)
 ```
-
-
-
-# Join our Community:: 
-    <a href="https://www.instagram.com/sumohibxd/">
-    <img width="80px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg"/>
-
-<br>
-    
-<br>
