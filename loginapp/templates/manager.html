@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Account</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,900;1,400&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    .main-container {
+        border: 2.5px solid #a2a2a2;
+        background-color: #fbecff;
+        border-radius: 15px;
+        max-width: 100vw;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 10px 10px 10px;
+    }
+
+    .inner-container {
+        border: 2.5px solid #a2a2a2;
+        border-radius: 15px;
+        background-color: rgba(255, 228, 196, 0.2);
+        height: 70vh;
+        margin: 5vh 30% 0%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .one {
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .is-bordered {
+        border: 2px solid white;
+    }
+
+    .info {
+        padding-left: 30px;
+    }
+
+    .info h1 {
+        font-size: 20px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
+    }
+
+    .two {
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heading {
+        font-size: 48px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
+        text-transform: capitalize;
+        color: black;
+        margin-bottom: -20px;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .four {
+        margin-top: 40px;
+    }
+
+    .notify {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        border-radius: 15px;
+    }
+</style>
+<script>
+    function hideDiv() {
+        document.getElementById("notifyDiv").style.display = "none";
+    }
+</script>
+
+<body>
+    {% extends "navbar.html" %}
+    {% block content %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="notify notification is-{{ category }}" id="notifyDiv">
+        <button class="delete" onclick="hideDiv()"></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="main-container">
+        <div class="inner-container">
+
+            <div class="one">
+                <figure class="image is-128x128">
+                    <img class="is-rounded is-bordered" src="{{ image_file }}">
+                </figure>
+
+                <div class="info">
+                    <h1>{{ current_user.name }} <a href="manager/account">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </a>
+                    </h1>
+                    <h3>{{ current_user.email }}</h3>
+                </div>
+            </div>
+
+            <div class="two">
+                <h1 class="heading">Hello &</h1>
+                <h1 class="heading">welcome.</h1>
+            </div>
+
+            <div class="three">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veniam consequatur vitae dolore molestiae
+                    repellendus natus neque. Doloremque deleniti, consectetur
+                    asperiores alias maxime ratione! Nam voluptates esse alias
+                    voluptatibus nihil iure!
+                </p>
+            </div>
+
+            <div class="four">
+                <button class="button is-link is-light"><a href="manager/add">Add Password</a></button>
+                <button class="button is-link is-light"><a href="manager/display">Display</a></button>
+                <button class="button is-link is-light"><a href="manager/account">Account</a></button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    {% endblock %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Display</title>
+
+    <style>
+        /* top part, navbar - inside header */
+        .top {
+            height: 10vh;
+            width: 100vw;
+            /* background-color: rgb(224, 227, 233); */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-wrapper {
+            /* border: 1px solid black; */
+            width: 90%;
+            height: 100%;
+
+            background-color: white;
+
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            border-radius: 15px;
+        }
+
+        /* main - table, content */
+        .main-table {
+            border: 2.5px solid #a2a2a2;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+
+        }
+
+        table {
+            text-align: center;
+            border-radius: 15px;
+            font-size: 1em;
+        }
+
+        #passwd {
+            /* visibility: hidden; */
+            -moz-content-visibility: hidden;
+            -webkit-content-visibility: hidden;
+            content-visibility: hidden;
+        }
+
+        #box:checked+#passwd {
+            /* visibility: visible; */
+            -moz-content-visibility: visible;
+            -webkit-content-visibility: visible;
+            content-visibility: visible;
+        }
+
+        input {
+            font-size: 1em;
+        }
+
+        input.size {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    {% extends "navbar.html" %}
+    {% block content %}
+
+    <main>
+        <div class="main-table">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>WEBSITES</th>
+                        <th>USERNAMES</th>
+                        <th>EMAILS</th>
+                        <th>PASSWORDS</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% if elements|length == 0 %}
+                    <tr>
+                        <td colspan="5">
+                            <div class="notification is-warning">
+                                <strong>No record found. Please add <a href="{{url_for('add')}}">here</a>.</strong>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="button is-warning is-light">
+                                <a href="{{url_for('add')}}">
+                                    <ion-icon name="add-circle-outline" size='large'></ion-icon>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% for element in elements %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ element.webaddress }}</td>
+                        <td>{{ element.username }}</td>
+                        <td>{{ element.email }}</td>
+
+                        <td><input type="checkbox" id="box" class="size" />&Tab;<input value="{{ element.password }}"
+                                id="passwd"></input></td>
+                        <td>
+                            <a href="{{url_for('add')}}"><button class="button is-warning is-light">
+                                    <ion-icon name="add-circle-outline" size='large'></ion-icon>
+                                </button></a>
+                            <a href="/update/{{element.sl}}"><button
+                                    class="button is-success is-light">Update</button></a>
+                            <a href="/delete/{{element.sl}}"><button
+                                    class="button is-danger is-light">Delete</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    {% endblock %}
+</body>
+
+</html>
